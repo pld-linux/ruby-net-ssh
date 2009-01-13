@@ -1,3 +1,5 @@
+# TODO:
+# - what to do with net subdir?
 Summary:	Net::SSH is a pure-Ruby implementation of the SSH2 client protocol
 Name:		ruby-net-ssh
 Version:	2.0.8
@@ -34,6 +36,10 @@ Documentation files for ruby-net-ssh.
 %build
 rdoc --ri --op ri lib
 rdoc --op rdoc lib
+
+rm -rf ri/OpenSSL
+rm -rf ri/String
+rm -f ri/Net/cdesc-Net.yaml
 rm -f ri/created.rid
 
 %install
@@ -49,9 +55,15 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc CHANGELOG.rdoc README.rdoc THANKS.rdoc
-%{ruby_rubylibdir}
+# XXX?
+%dir %{ruby_rubylibdir}/net
+%{ruby_rubylibdir}/net/._ssh.rb
+%{ruby_rubylibdir}/net/ssh.rb
+%{ruby_rubylibdir}/net/ssh
 
 %files rdoc
 %defattr(644,root,root,755)
 %{ruby_rdocdir}/%{name}-%{version}
-%{ruby_ridir}
+# XXX ?
+%dir %{ruby_ridir}/Net
+%{ruby_ridir}/Net/SSH
