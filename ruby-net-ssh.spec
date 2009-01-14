@@ -1,6 +1,7 @@
 # TODO:
 # - what to do with net subdir?
-Summary:	Net::SSH is a pure-Ruby implementation of the SSH2 client protocol
+Summary:	Net::SSH - a pure-Ruby implementation of the SSH2 client protocol
+Summary(pl.UTF-8):	Net::SSH - implementacja protokołu klienckiego SSH2 w czystym Rubym
 Name:		ruby-net-ssh
 Version:	2.0.8
 Release:	0.1
@@ -22,13 +23,20 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %description
 Net::SSH is a pure-Ruby implementation of the SSH2 client protocol.
 
+%description -l pl.UTF-8
+Net::SSH to implementacja protokołu klienckiego SSH2 w czystym Rubym.
+
 %package rdoc
-Summary:	Documentation files for ruby-net-ssh
+Summary:	Documentation files for net-ssh library
+Summary(pl.UTF-8):	Pliki dokumentacji do biblioteki net-ssh
 Group:		Documentation
 Requires:	ruby >= 1:1.8.7-4
 
 %description rdoc
-Documentation files for ruby-net-ssh.
+Documentation files for net-ssh library.
+
+%description rdoc -l pl.UTF-8
+Pliki dokumentacji do biblioteki net-ssh.
 
 %prep
 %setup -q -n net-ssh-%{version}
