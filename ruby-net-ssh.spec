@@ -61,7 +61,7 @@ find -newer README.rdoc -o -print | xargs touch --reference %{SOURCE0}
 %build
 rdoc --ri --op ri lib
 rdoc --op rdoc lib
-rm -r ri/{OpenSSL,String,Net/cdesc-Net.yaml}
+rm -r ri/{OpenSSL,String}
 rm ri/created.rid
 
 %install
