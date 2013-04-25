@@ -1,11 +1,9 @@
-# TODO:
-# - what to do with net subdir?
 %define pkgname net-ssh
 Summary:	Net::SSH - a pure-Ruby implementation of the SSH2 client protocol
 Summary(pl.UTF-8):	Net::SSH - implementacja protokołu klienckiego SSH2 w czystym Rubym
 Name:		ruby-%{pkgname}
 Version:	2.6.6
-Release:	1
+Release:	2
 License:	MIT
 Group:		Development/Languages
 Source0:	http://rubygems.org/downloads/%{pkgname}-%{version}.gem
@@ -77,8 +75,6 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc README.rdoc CHANGES.txt THANKS.txt LICENSE.txt
-# XXX?
-%dir %{ruby_vendorlibdir}/net
 %{ruby_vendorlibdir}/net/ssh.rb
 %{ruby_vendorlibdir}/net/ssh
 
