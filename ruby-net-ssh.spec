@@ -3,14 +3,14 @@ Summary:	Net::SSH - a pure-Ruby implementation of the SSH2 client protocol
 Summary(pl.UTF-8):	Net::SSH - implementacja protokołu klienckiego SSH2 w czystym Rubym
 Name:		ruby-%{pkgname}
 Version:	2.6.6
-Release:	2
+Release:	3
 License:	MIT
 Group:		Development/Languages
 Source0:	http://rubygems.org/downloads/%{pkgname}-%{version}.gem
 # Source0-md5:	1aeaa841f23f8d528ba02c2bedd6f696
 URL:		http://github.com/net-ssh/net-ssh
 BuildRequires:	rpm-rubyprov
-BuildRequires:	rpmbuild(macros) >= 1.656
+BuildRequires:	rpmbuild(macros) >= 1.665
 %if %(locale -a | grep -q '^en_US$'; echo $?)
 BuildRequires:	glibc-localedb-all
 %endif
@@ -52,6 +52,9 @@ Dokumentacji w formacie ri dla %{pkgname}.
 %setup -q -n %{pkgname}-%{version}
 
 %build
+# write .gemspec
+%__gem_helper spec
+
 # UTF8 locale needed for doc generation
 export LC_ALL=en_US.UTF-8
 rdoc --ri --op ri lib
@@ -63,11 +66,14 @@ rm ri/cache.ri
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{ruby_vendorlibdir},%{ruby_ridir},%{ruby_rdocdir}/%{name}-%{version}}
+install -d $RPM_BUILD_ROOT{%{ruby_vendorlibdir},%{ruby_specdir},%{ruby_ridir},%{ruby_rdocdir}/%{name}-%{version}}
 
 cp -a lib/* $RPM_BUILD_ROOT%{ruby_vendorlibdir}
 cp -a ri/* $RPM_BUILD_ROOT%{ruby_ridir}
 cp -a rdoc/* $RPM_BUILD_ROOT%{ruby_rdocdir}/%{name}-%{version}
+
+# install gemspec
+cp -p %{pkgname}-%{version}.gemspec $RPM_BUILD_ROOT%{ruby_specdir}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -77,6 +83,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc README.rdoc CHANGES.txt THANKS.txt LICENSE.txt
 %{ruby_vendorlibdir}/net/ssh.rb
 %{ruby_vendorlibdir}/net/ssh
+%{ruby_specdir}/net-ssh-%{version}.gemspec
 
 %files rdoc
 %defattr(644,root,root,755)
