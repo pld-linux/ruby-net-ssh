@@ -3,7 +3,7 @@ Summary:	Net::SSH - a pure-Ruby implementation of the SSH2 client protocol
 Summary(pl.UTF-8):	Net::SSH - implementacja protokołu klienckiego SSH2 w czystym Rubym
 Name:		ruby-%{pkgname}
 Version:	5.0.2
-Release:	2
+Release:	3
 License:	MIT
 Group:		Development/Languages
 Source0:	http://rubygems.org/downloads/%{pkgname}-%{version}.gem
@@ -91,6 +91,5 @@ rm -rf $RPM_BUILD_ROOT
 
 %files ri
 %defattr(644,root,root,755)
-# XXX?
-%dir %{ruby_ridir}/Net
-%{ruby_ridir}/Net/SSH
+%{ruby_ridir}/DL
+%{ruby_ridir}/Net
